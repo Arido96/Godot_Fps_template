@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://20ju38wkbvk3"]
+
+[ext_resource type="AudioStream" uid="uid://36oug7bepql2" path="res://SFX/556 Single Isolated MP3.mp3" id="1_apw4t"]
+[ext_resource type="Script" path="res://SFX/Scripts/audio_controller.cs" id="2_pwebk"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_apw4t")
+script = ExtResource("2_pwebk")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeOut"]

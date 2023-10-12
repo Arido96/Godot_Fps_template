@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx2vr7y5s2rxg"]
+
+[ext_resource type="Script" path="res://VFX/Scripts/muzzleFlash.cs" id="1_8rvms"]
+[ext_resource type="PackedScene" uid="uid://dlpbxo0mujna3" path="res://VFX/Scenes/MuzzleFLashParticle.tscn" id="2_epsr5"]
+
+[node name="Muzzle" type="Node3D"]
+script = ExtResource("1_8rvms")
+
+[node name="Particle" parent="." instance=ExtResource("2_epsr5")]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5a73cmgdc28u"]
+
+[ext_resource type="Texture2D" uid="uid://urrt15ooqswt" path="res://Weapons/Textures/AK47(1).png" id="1_wtlic"]
+
+[node name="Decal" type="Decal"]
+size = Vector3(0.1, 0.1, 1)
+texture_albedo = ExtResource("1_wtlic")
+upper_fade = 1e-05
+lower_fade = 1e-05

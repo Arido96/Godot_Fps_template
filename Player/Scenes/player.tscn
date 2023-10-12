@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dg8kuio2g2wgt"]
+
+[ext_resource type="Script" path="res://Player/Scripts/CharacterBody3D.cs" id="1_31aou"]
+[ext_resource type="Script" path="res://Player/Scripts/WeaponManager.cs" id="2_at6bs"]
+[ext_resource type="PackedScene" uid="uid://bw6eisa2eagmh" path="res://Weapons/Scenes/ak12.tscn" id="2_oit2h"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_b47fi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sdo76"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15692, 0)
+script = ExtResource("1_31aou")
+_camera = NodePath("head/Camera3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CapsuleMesh_b47fi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_sdo76")
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.614805, 0)
+
+[node name="Camera3D" type="Camera3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.160927, 0)
+current = true
+
+[node name="WeaponManager" type="Node3D" parent="head/Camera3D" node_paths=PackedStringArray("_camera", "_playerScript", "_recoilReciever")]
+script = ExtResource("2_at6bs")
+_camera = NodePath("..")
+_playerScript = NodePath("../../..")
+_recoilReciever = NodePath("RecoilReciever")
+
+[node name="RecoilReciever" type="Node3D" parent="head/Camera3D/WeaponManager"]
+
+[node name="Gun" parent="head/Camera3D/WeaponManager/RecoilReciever" instance=ExtResource("2_oit2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.527063, -0.443421, 0)

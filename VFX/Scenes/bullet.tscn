@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c25k65da4pxbc"]
+
+[ext_resource type="Script" path="res://VFX/Scenes/Bullet.cs" id="1_fku0j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c36g1"]
+albedo_color = Color(1, 0.905882, 0, 1)
+emission_enabled = true
+emission = Color(0, 0.952941, 0, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_vp45w"]
+material = SubResource("StandardMaterial3D_c36g1")
+size = Vector3(0.1, 0.1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j0r7q"]
+size = Vector3(0.1, 0.1, 5)
+
+[node name="Bullet" type="Node3D"]
+script = ExtResource("1_fku0j")
+_speed = 500.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_vp45w")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_j0r7q")
+
+[connection signal="body_entered" from="Area3D" to="." method="OnBodyEntered"]
